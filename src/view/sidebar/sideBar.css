@@ -1,0 +1,123 @@
+@media (min-width: 992px) {
+    .side-bar {
+        width: 230px;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+    }
+
+    .side-bar-logo {
+        display: flex;
+        width: 230px;
+        height: 60px;
+        background-color: #00c5fb;
+        text-decoration: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        width: 136px;
+        height: 34px;
+        background-image: url(https://dev-hrm.merket.io/static/media/logo.9765b6761ad7c8b8057cf7c7caace460.svg);
+        background-size: 136px 34px;
+    }
+
+    .menu {
+        padding-top: 20px;
+        background-color: #34444c;
+    }
+
+    .side-bar-menu {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        background-color: #34444c;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        height: 1800px;
+    }
+
+    .tags {
+        text-decoration: none;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        gap: 14px;
+        align-items: center;
+        margin: 0px 12px;
+        padding: 12px 0px;
+    }
+
+    .item:hover {
+        color: #fff;
+    }
+
+    .item-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .dropdown-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .item-title {
+        font-family: "Roboto", sans-serif;
+        color: #b7c0cd;
+        font-size: 14px;
+        /* text-decoration: none; */
+        width: 145px;
+    }
+
+    .item-title:hover {
+        color: #fff;
+        text-decoration: #00c5fb;
+        text-decoration-line: underline;
+    }
+
+    .item-title-sub-menu {
+        font-family: "Roboto", sans-serif;
+        color: #b7c0cd;
+        font-size: 14px;
+        /* text-decoration: none; */
+        width: 145px;
+    }
+
+    .item-title-sub-menu:hover {
+        color: #fff;
+
+    }
+
+    .sub-menu-employee {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub-menu-setting {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-sub-menu {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        gap: 10px;
+        align-items: center;
+        margin: 0px 12px;
+        padding: 12px 0px;
+    }
+
+    .rotate-icon {
+        transform: rotate(90deg);
+        animation: scaleUp 1s ease-in;
+    }
+}

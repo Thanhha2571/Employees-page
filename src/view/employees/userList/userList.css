@@ -1,0 +1,21 @@
+@media (max-width: 1920px) {
+    .all-users-field {
+        display: grid;
+        grid-template-columns: 23.2% 23.2% 23.2% 23.2%;
+        margin-top: 20px;
+        /* justify-content: center; */
+        width: calc(100% - 30px);
+        background-color: #f7f7f7;
+        margin-right: -15px;
+        margin-left: -15px;
+        gap: 25px;
+    }
+
+    .user-item-field {
+        display: flex;
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}

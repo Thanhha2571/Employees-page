@@ -1,0 +1,74 @@
+@media (max-width: 1920px) {
+    .user-item {
+        background-color: #fff;
+        border: 1px solid #ededed;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+        font-family: "Roboto", sans-serif;
+        font-size: 0.9375rem;
+        color: #1f1f1f;
+        width: 100%;
+    }
+
+    .img {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+
+    .info-user {
+        cursor: pointer;
+        text-decoration: none;
+        color: #1f1f1f;
+        text-align: center;
+    }
+
+    .user-item-email {
+        font-style: italic;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 5px;
+        width: 120px;
+        height: 80px;
+        position: absolute;
+        justify-content: center;
+        margin-bottom: 30px;
+        margin-left: 260px;
+        align-items: center;
+    }
+
+    .edit-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        width: 120px;
+        height: 40px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .delete-btn {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        width: 120px;
+        height: 40px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        position: relative;
+    }
+}
