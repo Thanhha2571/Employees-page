@@ -6,6 +6,10 @@
         position: fixed;
     }
 
+    .hide-side-bar {
+        width: 80px;
+    }
+
     .side-bar-logo {
         display: flex;
         width: 230px;
@@ -16,11 +20,31 @@
         align-items: center;
     }
 
+    .logo-hide-side-bar {
+        width: 80px;
+        height: 60px;
+    }
+
+    .side-bar.hover {
+        /* Add your styles for the hover effect here */
+        /* For example, change the background color when hovering */
+        background-color: #f0f0f0;
+        /* Add any other styles you want to apply during the hover effect */
+    }
+
     .logo {
         width: 136px;
         height: 34px;
         background-image: url(https://dev-hrm.merket.io/static/media/logo.9765b6761ad7c8b8057cf7c7caace460.svg);
         background-size: 136px 34px;
+    }
+
+    .logo-image-hide-side-bar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background-image: url(https://dev-hrm.merket.io/static/media/logo-sm.514a446ab3deefd92b68eaaa4d8243e3.svg);
+        background-size: 34px 34px;
     }
 
     .menu {
@@ -51,6 +75,10 @@
         align-items: center;
         margin: 0px 12px;
         padding: 12px 0px;
+    }
+
+    .item-hide-side-bar {
+        justify-content: center;
     }
 
     .item:hover {

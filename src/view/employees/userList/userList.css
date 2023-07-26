@@ -4,11 +4,12 @@
         grid-template-columns: 23.2% 23.2% 23.2% 23.2%;
         margin-top: 20px;
         /* justify-content: center; */
-        width: calc(100% - 30px);
+        /* width: calc(100% - 30px); */
         background-color: #f7f7f7;
         margin-right: -15px;
         margin-left: -15px;
         gap: 25px;
+        text-rendering: optimizeSpeed
     }
 
     .user-item-field {
@@ -17,5 +18,13 @@
         width: 100%;
         padding-right: 15px;
         padding-left: 15px;
+    }
+
+    .no-result-text {
+        font-family: "Roboto", sans-serif;
+        color: #1f1f1f;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
     }
 }

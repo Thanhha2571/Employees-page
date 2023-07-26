@@ -1,6 +1,6 @@
 import "./employee.css"
 import UserList from "./userList/userList"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useDispatch } from "react-redux";
 import Modal from "react-modal"
 import { positionMenuList, departmentMenuList, skillMenuList } from "../../common/data"
@@ -11,6 +11,7 @@ const Employee = () => {
     const [departmentMenu, setDepartmentMenu] = useState(false)
     const [skillMenu, setSkillMenu] = useState(false)
     const [searchLabelActive, setSearchLabelActive] = useState(false)
+
     const [boxAdd, setBoxAdd] = useState(false)
 
     const [selectedPosition, setSelectedPosition] = useState("Select Position")
@@ -25,6 +26,9 @@ const Employee = () => {
     const [imageSlug, setImageSlug] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    const searchBlockRef = useRef(null);
+
+    const [inputSearch, setInputSearch] = useState("");
     const dispatch = useDispatch()
 
     const handlePositionMenu = () => {
@@ -40,6 +44,7 @@ const Employee = () => {
     const handleDepartmentMenu = () => {
         setDepartmentMenu(!departmentMenu)
         setPositionMenu(false)
+        setSkillMenu(false)
     }
 
     const handleChangeSelectedDepartment = (item) => {
@@ -56,11 +61,11 @@ const Employee = () => {
         setSelectedSkill(item)
     }
 
-    const handleMenuOff = () => {
-        setDepartmentMenu(false)
-        setPositionMenu(false)
-        setSkillMenu(false)
-    }
+    // const handleMenuOff = () => {
+    //     setDepartmentMenu(false)
+    //     setPositionMenu(false)
+    //     setSkillMenu(false)
+    // }
 
     const handleSearchLabelClick = () => {
         setSearchLabelActive(true)
@@ -118,6 +123,20 @@ const Employee = () => {
         setBoxAdd(false)
     };
 
+    useEffect(() => {
+        const handleClickOutsideSearchBlock = (event) => {
+            if (searchBlockRef.current && !searchBlockRef.current.contains(event.target)) {
+                setSearchLabelActive(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutsideSearchBlock);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutsideSearchBlock);
+        };
+    }, []);
+
     return (
         <div className="employee-page">
             <div className="employee-header">
@@ -149,8 +168,16 @@ const Employee = () => {
             </div>
             <div className="employee-form">
                 <div className="search-field">
-                    <div className={`search-block ${searchLabelActive ? "active" : ""}`} onClick={handleSearchLabelClick}>
-                        <input type="text" className="employee-search-input" />
+                    <div
+                        className={`search-block ${searchLabelActive ? "active" : ""}`}
+                        onClick={handleSearchLabelClick}
+                        value={inputSearch}
+                        ref={searchBlockRef}
+                        onChange={(e) => setInputSearch(e.target.value)}
+                    >
+                        <input
+                            type="text"
+                            className="employee-search-input" />
                         <label className={`employee-search-label ${searchLabelActive ? "active" : ""}`}>Search by Name, Employee's Role</label>
                     </div>
                 </div>
@@ -214,6 +241,8 @@ const Employee = () => {
                 <div className="search-btn-field">
                     <button className="search-btn">Seacrh</button>
                 </div>
+
+                {/* Create a new employee */}
                 <Modal
                     isOpen={boxAdd}
                     onRequestClose={() => setBoxAdd(false)}
@@ -318,7 +347,7 @@ const Employee = () => {
                     </div>
                 </Modal>
             </div>
-            <UserList />
+            <UserList input={inputSearch} />
         </div>
     )
 }

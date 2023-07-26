@@ -9,7 +9,7 @@ const userApi = {
                 // limit: inputLimit,
                 column: "role",
                 columnDir: "DESC",
-                // search: input,
+                search: input,
             }
         });
     },

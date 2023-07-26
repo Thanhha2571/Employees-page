@@ -1,23 +1,27 @@
 @media (max-width: 1920px) {
     .employee-page {
         display: flex;
-        position: fixed;
+        /* position: fixed; */
         flex-direction: column;
-        width: calc(100% - 230px);
-        height: 1450px;
+        /* width: calc(100% - 230px); */
+        /* width: 100%; */
+        height: 1055px;
         margin-top: 60px;
-        margin-left: 230px;
+        /* margin-left: 230px; */
         padding: 30px;
         background-color: #f7f7f7;
+        text-rendering: optimizeSpeed
     }
 
     .employee-header {
-        width: calc(100% - 60px);
+        /* width: calc(100% - 60px); */
         display: flex;
         flex-direction: row;
         height: 60.2px;
         align-items: center;
         margin-bottom: 30px;
+        /* position: relative; */
+        /* margin-top: 60px; */
     }
 
     .employee-header-heading {
@@ -159,7 +163,7 @@
         flex-direction: row;
         height: 66px;
         /* flex-wrap: wrap; */
-        width: calc(100% - 30px);
+        /* width: calc(100% - 30px); */
         margin-right: -15px;
         margin-left: -15px;
     }

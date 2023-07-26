@@ -1,15 +1,24 @@
 import "./header.css"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { toggleSidebar } from "../../redux/slices/sidebarSlice"
 const Header = () => {
-
     const [ userMenu, setUserMenu ] = useState(false)
+
+    const dispatch = useDispatch()
+    const { isOpenSidebar } = useSelector((state) => state.sidebar)
 
     const handleUserMenu = () => {
         setUserMenu(!userMenu)
     }
+
+    const handleOpenSidebar = () => {
+        dispatch(toggleSidebar())
+    }
+    
     return (
-        <div className="header">
-            <div className="header-hide-menu">
+        <div className={`header ${isOpenSidebar ? "" : "header-hide-side-bar"}`}>
+            <div onClick={handleOpenSidebar} className="header-hide-menu">
                 <svg class="Header_hide-menu-icon__a76tw" width="19" height="14" viewBox="0 0 19 14" fill="#fff" xmlns="http://www.w3.org/2000/svg"><line y1="1.25" x2="19" y2="1.25" stroke="#fff" stroke-width="1.5"></line><line y1="7.25" x2="19" y2="7.25" stroke="#fff" stroke-width="1.5"></line><line x1="8" y1="13.25" x2="19" y2="13.25" stroke="#fff" stroke-width="1.5"></line></svg>
                 <span className="header-title">Skills Management</span>
             </div>

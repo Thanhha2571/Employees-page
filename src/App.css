@@ -1,9 +1,19 @@
-
 .app {
   display: flex;
   flex-direction: row;
 }
 
-.main {
+.layout {
+  display: flex;
+  flex-direction: column;
+  margin-left: 230px;
+  width: calc(100% - 230px);
+  transition: all 0.1s ease-in-out;
+  overflow-y: auto;
   position: relative;
+}
+
+.layout-hide-side-bar {
+  width: calc(100% - 80px);
+  margin-left: 80px;
 }
