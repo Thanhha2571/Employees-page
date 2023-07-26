@@ -2,21 +2,21 @@ import "./userItem.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
-import { deleteUser } from "../../../redux/slices/userSlice";
+import { deleteUser, showMenu } from "../../../../redux/slices/userSlice";
 
 const UserItem = (props) => {
     const { img, fullname, email, uuid, roleObj } = props;
     // console.log(props);
     const dispatch = useDispatch();
-    const [openMenu, setOpenMenu] = useState(null);
+    // const [openMenu, setOpenMenu] = useState(null);
 
     const [boxDelete, setBoxDelete] = useState(false)
 
     const handleEdit = (uuid) => {
         // navigate(`/edit/${uuid}`);
-        setOpenMenu(false);
+        // setOpenMenu(false);
     };
 
     const handleDelete = () => {
@@ -29,12 +29,10 @@ const UserItem = (props) => {
             });
     };
 
+    const { openMenu } = useSelector((state) => state.users);
+
     const handleMenu = (uuid) => {
-        if (openMenu === uuid) {
-            setOpenMenu(null);
-        } else {
-            setOpenMenu(uuid);
-        };
+        dispatch(showMenu(uuid));
     }
 
     const imageUrl = img || "https://static.thenounproject.com/png/5034901-200.png";

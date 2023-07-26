@@ -2,9 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import userApi from "../services/api";
 import { axiosInstance } from "../services/httpServices";
 const initialState = {
+  tableView: true,
+  gridView: false,
+  status: "Active",
   user: {},
   users: [],
   loading: false,
+  openMenu: null,
 };
 
 //get all users
@@ -52,7 +56,7 @@ export const editUser = createAsyncThunk(
     try {
       const response = await axiosInstance.post("api/user/update", userData);
       return response
-    }catch (err) {
+    } catch (err) {
       return thunkAPI.rejectWithValue(err);
     }
   }
@@ -61,7 +65,7 @@ export const editUser = createAsyncThunk(
 
 export const deleteUser = createAsyncThunk(
   "user/deleteUser",
-  async (uuid,thunkAPI) => {
+  async (uuid, thunkAPI) => {
     try {
       const response = await axiosInstance.delete("api/user/delete", {
         data: { uuid },
@@ -76,7 +80,24 @@ export const deleteUser = createAsyncThunk(
 export const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    showTableView: (state) => {
+      state.tableView = true;
+      state.gridView = false;
+    },
+
+    showGridView: (state) => {
+      state.gridView = true;
+      state.tableView = false
+    },
+    setStatus: (state) => {
+      state.status = "Inactive";
+    },
+    showMenu: (state, action) => {
+      const uuid = action.payload;
+      state.openMenu = state.openMenu === uuid ? null : uuid;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // get all users
@@ -106,3 +127,4 @@ export const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { showGridView, showTableView, showMenu } = userSlice.actions;

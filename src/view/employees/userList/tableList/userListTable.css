@@ -1,0 +1,68 @@
+@media (max-width: 1920px) {
+    .user-list-table {
+        margin-top: 15px;
+        font-family: "Roboto", sans-serif;
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        font-size: 0.9375rem;
+        color: #1f1f1f;
+    }
+
+    .view-table {
+        margin: 0;
+        padding: 0;
+    }
+
+    .view-table-field {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .view-table-block {
+        width: 100%;
+        margin: 0;
+        font-size: 0.9375rem;
+        /* padding: 0 15px; */
+    }
+
+    .table {
+        color: #333;
+        width: 100%;
+        border-color: grey;
+        background-color: #ffffff;
+        margin: 15px 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .thead {
+        text-indent: 0;
+    }
+
+    .tr {
+        border: 1px solid #dee2e6;
+        box-shadow: 0 0 3px #e5e5e5;
+    }
+
+    .th {
+        min-width: 150px;
+        padding: 14px 10px;
+        border-bottom: 2px solid #dee2e6;
+        text-align: left;
+    }
+
+    .th-action {
+        width: 134px;
+        text-align: right;
+        padding-right: 19px;
+        padding: 10px 8px;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table-title-name {
+        position: relative;
+        cursor: pointer;
+    }
+}

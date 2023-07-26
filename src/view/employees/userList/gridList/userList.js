@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUsers } from "../../../redux/slices/userSlice";
+import { fetchUsers } from "../../../../redux/slices/userSlice";
 import UserItem from "./userItem";
 import "./userList.css";
 const UserList = (props) => {
@@ -14,7 +14,6 @@ const UserList = (props) => {
     }, [dispatch, input]);
 
     const userList = useSelector((state) => state.users?.users);
-    // const navigate = useNavigate();
     console.log(userList);
 
     if (!userList || userList.length === 0) {
