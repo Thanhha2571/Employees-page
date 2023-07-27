@@ -5,10 +5,11 @@ import { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal"
 import { positionMenuList, departmentMenuList, skillMenuList } from "../../common/data"
-import { createUser } from "../../redux/slices/userSlice";
+import { createUser, fetchUsers } from "../../redux/slices/userSlice";
 import { showGridView, showTableView } from "../../redux/slices/userSlice";
 
 const Employee = () => {
+
     const [positionMenu, setPositionMenu] = useState(false)
     const [departmentMenu, setDepartmentMenu] = useState(false)
     const [skillMenu, setSkillMenu] = useState(false)
@@ -27,6 +28,9 @@ const Employee = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [imageSlug, setImageSlug] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const [inputSearchDepartment, setInputSearchDepartment] = useState("");
+    const [inputSearchSkill, setInputSearchSkill] = useState("");
 
     const searchBlockRef = useRef(null);
 
@@ -52,6 +56,7 @@ const Employee = () => {
 
     const handleChangeSelectedDepartment = (item) => {
         setSelectedDepartment(item)
+        setDepartmentMenu(false)
     }
 
     const handleSkillMenu = () => {
@@ -62,6 +67,7 @@ const Employee = () => {
 
     const handleChangeSelectedSkill = (item) => {
         setSelectedSkill(item)
+        setSkillMenu(false)
     }
 
     const handleSearchLabelClick = () => {
@@ -128,6 +134,7 @@ const Employee = () => {
         setBoxAdd(false)
     };
 
+
     useEffect(() => {
         const handleClickOutsideSearchBlock = (event) => {
             if (searchBlockRef.current && !searchBlockRef.current.contains(event.target)) {
@@ -142,6 +149,27 @@ const Employee = () => {
         };
     }, []);
 
+    const [filteredDepartmentMenuList, setFilteredDepartmentMenuList] = useState(
+        departmentMenuList
+    );
+
+    useEffect(() => {
+        const filteredDepartmentList = departmentMenuList.filter(({ item }) =>
+            item.toLowerCase().includes(inputSearchDepartment.toLowerCase())
+        );
+        setFilteredDepartmentMenuList(filteredDepartmentList);
+    }, [inputSearchDepartment]);
+
+    const [filteredSkillMenuList, setFilteredSkillMenuList] = useState(
+        skillMenuList
+    );
+
+    useEffect(() => {
+        const filteredSkillList = skillMenuList.filter(({ item }) =>
+            item.toLowerCase().includes(inputSearchSkill.toLowerCase())
+        );
+        setFilteredSkillMenuList(filteredSkillList);
+    }, [inputSearchSkill]);
     return (
         <div className="employee-page">
             <div className="employee-header">
@@ -205,10 +233,10 @@ const Employee = () => {
                         <label className="employee-position-label">Position</label>
                     </div>
                 </div>
-                <div onClick={handleDepartmentMenu} className="select-position-field">
+                <div className="select-position-field">
                     <div className="select-position">
                         <div className="select-position-block">
-                            <div className="select-block-main">
+                            <div onClick={handleDepartmentMenu} className="select-block-main">
                                 <div className="select-block-title">{selectedDepartment}</div>
                                 <div className={`employee-form-dropdown-icon ${departmentMenu ? "rotate-icon-dropdown" : ""}`}>
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-rotate-180 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{ color: "rgb(220, 220, 220)" }}><path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path></svg>
@@ -216,7 +244,16 @@ const Employee = () => {
                             </div>
 
                             {departmentMenu && (<div className="select-position-option">
-                                {departmentMenuList.map(({ index, item }) => {
+                                <div className="search-department-field">
+                                    <input
+                                        type="text"
+                                        className="search-department-input"
+                                        value={inputSearchDepartment}
+                                        onChange={(e) => setInputSearchDepartment(e.target.value)}
+                                        placeholder="Search ..."
+                                    />
+                                </div>
+                                {filteredDepartmentMenuList.map(({ index, item }) => {
                                     return <div onClick={() => handleChangeSelectedDepartment(item)} className="select-position-item">{item}</div>
                                 })}
                             </div>)}
@@ -224,10 +261,10 @@ const Employee = () => {
                         <label className="employee-position-label">Department</label>
                     </div>
                 </div>
-                <div onClick={handleSkillMenu} className="select-position-field">
+                <div className="select-position-field">
                     <div className="select-position">
                         <div className="select-position-block">
-                            <div className="select-block-main">
+                            <div onClick={handleSkillMenu} className="select-block-main">
                                 <div className="select-block-title">{selectedSkill}</div>
                                 <div className={`employee-form-dropdown-icon ${skillMenu ? "rotate-icon-dropdown" : ""}`}>
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-rotate-180 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{ color: "rgb(220, 220, 220)" }}><path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path></svg>
@@ -235,7 +272,16 @@ const Employee = () => {
                             </div>
 
                             {skillMenu && (<div className="select-position-option">
-                                {skillMenuList.map(({ index, item }) => {
+                                <div className="search-department-field">
+                                    <input
+                                        type="text"
+                                        className="search-department-input"
+                                        placeholder="Search ..."
+                                        value={inputSearchSkill}
+                                        onChange={(e) => setInputSearchSkill(e.target.value)}
+                                    />
+                                </div>
+                                {filteredSkillMenuList.map(({ index, item }) => {
                                     return <div onClick={() => handleChangeSelectedSkill(item)} className="select-position-item">{item}</div>
                                 })}
                             </div>)}
@@ -352,8 +398,8 @@ const Employee = () => {
                     </div>
                 </Modal>
             </div>
-            {gridView && (<UserList input={inputSearch} />)}
-            {tableView && (<UserListTable />)}
+            {gridView && (<UserList input={inputSearch}  />)}
+            {tableView && (<UserListTable input={inputSearch} />)}
         </div>
     )
 }

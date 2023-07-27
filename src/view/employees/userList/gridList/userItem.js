@@ -118,7 +118,8 @@ const UserItem = (props) => {
                                 <span
                                     onClick={() => {
                                         setBoxDelete(true)
-                                        console.log(uuid);}}
+                                        console.log(uuid);
+                                    }}
                                     className="edit-text"
                                 >
                                     Delete

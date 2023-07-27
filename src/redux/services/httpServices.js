@@ -70,7 +70,7 @@ import axios, {
   
     // If there is an access token, set the authorization header
     // if (accessToken) {
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWViYjE4M2MtZmQ1NC00YzhiLTg1OGQtZjA2YmE5Njk5ZWZmIiwiaWF0IjoxNjkwMjc2OTU4LCJleHAiOjE2OTAzNjMzNTh9.QT7YGmJloiJEzOLy8u_JqfEaJHTAh0PoVLjvtWFl_yc`;
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWViYjE4M2MtZmQ1NC00YzhiLTg1OGQtZjA2YmE5Njk5ZWZmIiwiaWF0IjoxNjkwNDI0MzY0LCJleHAiOjE2OTA1MTA3NjR9.EYLu5WakrDfKeAjLxlfqNH9D7z-5OlcfKpPr4itNLRs`;
     // }
   };
   

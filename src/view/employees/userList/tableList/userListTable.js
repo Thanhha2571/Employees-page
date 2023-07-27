@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux"
 import { fetchUsers } from "../../../../redux/slices/userSlice"
 import UserItemTable from "./userItemTable"
 
-const UserListTable = () => {
+const UserListTable = (props) => {
+    const { input } = props;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch,]);
+        dispatch(fetchUsers(input));
+    }, [dispatch, input]);
 
     const userList = useSelector((state) => state.users?.users);
 
@@ -46,20 +47,23 @@ const UserListTable = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="tbody">
-                                {userList.map(({ image_slug, id, fullname, email, roleObj, uuid, index, createdAt }) =>
-                                    <UserItemTable
-                                        key={id}
-                                        fullname={fullname}
-                                        id={id}
-                                        email={email}
-                                        roleObj={roleObj}
-                                        img={image_slug}
-                                        uuid={uuid}
-                                        index={index}
-                                        createdAt={createdAt}
-                                    />)}
-                            </tbody>
+                            {userList.length === 0 ? (<div className="no-result-text">NO RESULT</div>)
+                                : (
+                                    <tbody className="tbody">
+                                        {userList.map(({ image_slug, id, fullname, email, roleObj, uuid, index, createdAt }) =>
+                                            <UserItemTable
+                                                key={id}
+                                                fullname={fullname}
+                                                id={id}
+                                                email={email}
+                                                roleObj={roleObj}
+                                                img={image_slug}
+                                                uuid={uuid}
+                                                index={index}
+                                                createdAt={createdAt}
+                                            />)}
+                                    </tbody>
+                                )}
                         </table>
                     </div>
                 </div>

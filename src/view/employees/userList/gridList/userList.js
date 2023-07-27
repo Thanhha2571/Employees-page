@@ -16,10 +16,13 @@ const UserList = (props) => {
     const userList = useSelector((state) => state.users?.users);
     console.log(userList);
 
-    if (!userList || userList.length === 0) {
-        return <div className="no-result-text">NO RESULT</div>;
-    } else {
-        return (
+    // if (!userList || userList.length === 0) {
+    //     return <div className="no-result-text">NO RESULT</div>;
+    // } else {
+    return (
+        userList.length === 0 ? (
+            <div className="no-result-text">NO RESULT</div>
+        ) : (
             <div className="all-users-field">
                 {userList.map(({ image_slug, fullname, email, uuid, roleObj }) => (
                     <UserItem
@@ -32,8 +35,8 @@ const UserList = (props) => {
                     />
                 ))}
             </div>
-        );
-    }
+        )
+    );
 };
 
 export default UserList;
