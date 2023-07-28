@@ -13,11 +13,18 @@ const UserItem = (props) => {
     // const [openMenu, setOpenMenu] = useState(null);
 
     const [boxDelete, setBoxDelete] = useState(false)
+    const [boxEdit, setBoxEdit] = useState(false)
 
     const handleEdit = (uuid) => {
         // navigate(`/edit/${uuid}`);
         // setOpenMenu(false);
     };
+
+    const [fullnameEdit, setFullnameEdit] = useState("");
+    const [username, setUsername] = useState("");
+    const [emailEdit, setEmailEdit] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleDelete = () => {
         dispatch(deleteUser(uuid))
@@ -29,8 +36,17 @@ const UserItem = (props) => {
             });
     };
 
-    const { openMenu } = useSelector((state) => state.users);
+    let { openMenu } = useSelector((state) => state.users);
 
+    const users = useSelector((state) => state.users.users)
+    const userEdit = users.find((user) => user.uuid === uuid);
+
+    useEffect(() => {
+        if (userEdit) {
+            setFullnameEdit(userEdit.fullname);
+            setEmailEdit(userEdit.email);
+        }
+    }, [userEdit]);
     const handleMenu = (uuid) => {
         dispatch(showMenu(uuid));
     }
@@ -88,7 +104,10 @@ const UserItem = (props) => {
                                     ></path>
                                 </svg>
                                 <span
-                                    onClick={() => handleEdit(uuid)}
+                                    onClick={() => {
+                                        setBoxEdit(true)
+                                        console.log(uuid);
+                                    }}
                                     className="edit-text"
                                 >
                                     Edit
@@ -141,11 +160,85 @@ const UserItem = (props) => {
                 className="popup-content-delete"
             >
                 <div className="box-form-delete">
-                    <span>Are you sure delete {fullname} ?</span>
-                    <div>
-                        <button onClick={handleDelete}>Yes</button>
-                        <button onClick={() => setBoxDelete(false)}>No</button>
+                    <span className="delete-text-confirm">Are you sure to delete {fullname} ?</span>
+                    <div className="box-confirm">
+                        <button className="delete-confirm-option" onClick={handleDelete}>Yes</button>
+                        <button className="delete-confirm-option" onClick={() => setBoxDelete(false)}>No</button>
                     </div>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={boxEdit}
+                onRequestClose={() => setBoxEdit(false)}
+                overlayClassName="popup-overlay"
+                className="popup-content-edit"
+            >
+                <div className="box-form-edit">
+                    <button className="off-add-box" onClick={() => setBoxEdit(null)}>x</button>
+                    <h1 className="heading">Edit User</h1>
+                    <form className="form-edit"
+                    // onSubmit={handleSubmit}
+                    >
+                        <label className="label">
+                            Role:
+                            <input
+                                className="input-role"
+                                type="text"
+                                value={userEdit?.roleObj.title || ""}
+                                readOnly
+                            />
+                        </label>
+                        <label className="label">
+                            Fullname:
+                            <input
+                                placeholder={userEdit?.fullname}
+                                className="input"
+                                type="text"
+                                value={fullnameEdit}
+                                onChange={(e) => setFullnameEdit(e.target.value)}
+                            />
+                        </label>
+                        <label className="label">
+                            Username:
+                            <input
+                                value={userEdit?.username}
+                                className="input-username"
+                                type="text"
+                                readOnly
+                            />
+                        </label>
+                        <label className="label">
+                            Email:
+                            <input
+                                placeholder={userEdit?.email}
+                                className="input"
+                                type="email"
+                                value={emailEdit}
+                                onChange={(e) => setEmailEdit(e.target.value)}
+                            />
+                        </label>
+                        <label className="label">
+                            Password:
+                            <input
+                                className="input"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </label>
+                        <label className="label">
+                            Confirm Password:
+                            <input
+                                className="input"
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </label>
+                        <button className="upadate-btn" type="submit">
+                            Update
+                        </button>
+                    </form>
                 </div>
             </Modal>
         </div>

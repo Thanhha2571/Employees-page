@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { showMenu } from "../../../../redux/slices/userSlice";
+import { showMenu, setStatus } from "../../../../redux/slices/userSlice";
+
+
 const UserItemTable = (props) => {
     const { fullname, id, email, roleObj, img, uuid, index, createdAt } = props
 
@@ -12,12 +14,16 @@ const UserItemTable = (props) => {
     // const [openMenu, setOpenMenu] = useState(null);
 
     const dispatch = useDispatch();
-    const { openMenu } = useSelector((state) => state.users);
+    const { openMenu, status } = useSelector((state) => state.users);
 
     const handleMenu = (uuid) => {
         dispatch(showMenu(uuid));
     }
 
+    const handleStatus = () => {
+        dispatch(setStatus())
+        console.log("...");
+    }
     return (
         <tr className="tr-item">
             <td className="td-item">
@@ -34,7 +40,7 @@ const UserItemTable = (props) => {
             <td className="td-item">{email}</td>
             <td className="td-item">{roleObj?.title}</td>
             <td className="td-item">{createdAt.substr(0, 10)}</td>
-            <td className="td-item">Active</td>
+            <td className="td-item">{status}</td>
             <td className="td-item-action">
                 <div className="dropdown-menu-edit-delete-user">
                     <svg
@@ -91,11 +97,12 @@ const UserItemTable = (props) => {
                                 Edit
                             </span>
                         </button>
-                        <button className="delete-btn">
+                        <button className="edit-btn">
                             <svg
                                 style={{
                                     width: "10px",
                                     height: "10px",
+                                    cursor: "pointer",
                                     marginLeft: "25px",
                                 }}
                                 aria-hidden="true"
@@ -120,6 +127,20 @@ const UserItemTable = (props) => {
                                 className="edit-text"
                             >
                                 Delete
+                            </span>
+                        </button>
+                        <button onClick={handleStatus} className="edit-btn">
+                            <svg
+                                style={{
+                                    width: "10px",
+                                    height: "10px",
+                                    cursor: "pointer",
+                                    marginLeft: "25px",
+                                }} aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" class="svg-inline--fa fa-lock " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"></path></svg>
+                            <span
+                                className="edit-text"
+                            >
+                                Inactivate
                             </span>
                         </button>
                     </div>

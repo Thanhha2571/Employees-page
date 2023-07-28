@@ -6,7 +6,7 @@ import UserItem from "./userItem";
 import "./userList.css";
 const UserList = (props) => {
     const { input } = props;
-    //   const [input, setInput] = useState("");
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -14,11 +14,8 @@ const UserList = (props) => {
     }, [dispatch, input]);
 
     const userList = useSelector((state) => state.users?.users);
-    console.log(userList);
+    // console.log(userList);
 
-    // if (!userList || userList.length === 0) {
-    //     return <div className="no-result-text">NO RESULT</div>;
-    // } else {
     return (
         userList.length === 0 ? (
             <div className="no-result-text">NO RESULT</div>

@@ -90,8 +90,9 @@ export const userSlice = createSlice({
       state.gridView = true;
       state.tableView = false
     },
-    setStatus: (state) => {
-      state.status = "Inactive";
+    setStatus: (state, action) => {
+      // const uuid = action.payload;
+      state.status = "Inactive"
     },
     showMenu: (state, action) => {
       const uuid = action.payload;
@@ -127,4 +128,4 @@ export const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { showGridView, showTableView, showMenu } = userSlice.actions;
+export const { showGridView, showTableView, showMenu, setStatus } = userSlice.actions;

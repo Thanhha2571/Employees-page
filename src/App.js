@@ -2,7 +2,8 @@ import Header from "./view/header/header"
 import SideBar from "./view/sidebar/sideBar"
 import Employee from "./view/employees/employee";
 import Dashboard from "./view/dashboard/dashboard";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // import Login from "./view/login/login";
@@ -18,6 +19,7 @@ function App() {
       <div className={`layout ${isOpenSidebar ? "" : "layout-hide-side-bar"}`}>
         <Header />
         <Routes>
+          <Route path="/" element={<Navigate to="/dashboard/overview" />} />
           <Route path="/employees" element={<Employee />} />
           <Route path="/dashboard/overview" element={<Dashboard />} />
         </Routes>
