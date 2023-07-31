@@ -2,10 +2,10 @@ import Header from "./view/header/header"
 import SideBar from "./view/sidebar/sideBar"
 import Employee from "./view/employees/employee";
 import Dashboard from "./view/dashboard/dashboard";
-import { Route, Routes, Navigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Suspense } from "react";
+import Position from "./view/position/position";
 
 // import Login from "./view/login/login";
 import "./App.css"
@@ -22,9 +22,12 @@ function App() {
       path : "employees",
       component : <Employee />
     },
+    {
+      path : "position",
+      component: <Position />
+    }
   ]
   return (
-    // <BrowserRouter>
     <div className="app">
       <SideBar />
       <div className={`layout ${isOpenSidebar ? "" : "layout-hide-side-bar"}`}>
@@ -39,7 +42,6 @@ function App() {
                 key={String(index)}
               />
             ))}
-            {/* <Route path="/404" element={<PageNotFound />}></Route> */}
           </Routes>
       </div>
     </div>

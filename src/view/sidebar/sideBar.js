@@ -16,7 +16,7 @@ const SideBar = () => {
 
     return (
         <div className={`side-bar ${isOpenSidebar ? "" : "hide-side-bar"}`}>
-            <Link to="/" className={`side-bar-logo ${isOpenSidebar ? "" : "logo-hide-side-bar"} hover`}>
+            <Link to="/dashboard/overview" className={`side-bar-logo ${isOpenSidebar ? "" : "logo-hide-side-bar"} hover`}>
                 <div className={`logo ${isOpenSidebar ? "" : "logo-image-hide-side-bar"}`}></div>
             </Link>
             <div className="menu">
@@ -72,7 +72,7 @@ const SideBar = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link className="tags" to="/employess">
+                                <Link className="tags" to="/skills">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Skills</div>
                                     </div>

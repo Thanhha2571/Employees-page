@@ -2,9 +2,12 @@ import OverviewView from "./overviewView"
 import CertificateView from "./certificateView"
 import DepartmentView from "./departmentView"
 import { Suspense } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useEffect } from "react"
 const Dashboard = () => {
 
+    const navigate = useNavigate()
     const dashBoardTab = [
         {
             id: 1,
@@ -29,9 +32,20 @@ const Dashboard = () => {
         }
     ]
 
+    useEffect(() => {
+        navigate(`/${dashBoardTab[0].to}`);
+    }, []);
+
     return (
-        <div>
-            <div>sdfssdfd</div>
+        <Suspense fallback={<></>}>
+            <div>Dashboard</div>
+            <div style={{
+                marginTop: '100px',
+            }}>
+                <Link to="dashboard/overView">OverView</Link>
+                <Link to="dashboard/department">Department</Link>
+                <Link to="dashboard/certificate">Certificate</Link>
+            </div>
             <Routes>
                 {dashBoardTab.map((element, index) => (
                     <Route
@@ -43,7 +57,7 @@ const Dashboard = () => {
                     />
                 ))}
             </Routes>
-        </div>
+        </Suspense>
 
     )
 }
