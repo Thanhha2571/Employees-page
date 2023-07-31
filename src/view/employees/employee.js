@@ -7,6 +7,7 @@ import Modal from "react-modal"
 import { positionMenuList, departmentMenuList, skillMenuList } from "../../common/data"
 import { createUser, fetchUsers } from "../../redux/slices/userSlice";
 import { showGridView, showTableView } from "../../redux/slices/userSlice";
+import { Link } from "react-router-dom";
 
 const Employee = () => {
 
@@ -71,7 +72,7 @@ const Employee = () => {
     }
 
     const handleSearchLabelClick = () => {
-        setSearchLabelActive(true)
+        setSearchLabelActive(true);
     }
 
     const handleOpenAddForm = () => {
@@ -176,7 +177,7 @@ const Employee = () => {
                 <div className="employee-header-heading">
                     <h3 className="employee-header-heading-title">Employees</h3>
                     <div className="employee-header-heading-subtitle">
-                        <a className="employee-header-heading-subtitle-tags" href="/dashboard">Dashboard</a>
+                        <Link className="employee-header-heading-subtitle-tags" to="/dashboard">Dashboard</Link>
                         <span className="employee-header-heading-subtitle-text">/ Employee</span>
                     </div>
                 </div>
@@ -211,7 +212,7 @@ const Employee = () => {
                         <input
                             type="text"
                             className="employee-search-input" />
-                        <label className={`employee-search-label ${searchLabelActive ? "active" : ""}`}>Search by Name, Employee's Role</label>
+                        <label className={`employee-search-label ${searchLabelActive || inputSearch !== "" ? "active" : ""}`}>Search by Name, Employee's Role</label>
                     </div>
                 </div>
                 <div onClick={handlePositionMenu} className="select-position-field">

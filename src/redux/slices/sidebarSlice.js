@@ -12,6 +12,8 @@ export const sidebarSlice = createSlice({
     reducers: {
         toggleSidebar: (state) => {
             state.isOpenSidebar = !state.isOpenSidebar
+            state.employeeMenu = false
+            state.settingsMenu = false
         },
 
         toggleEmployeeMenu: (state) => {

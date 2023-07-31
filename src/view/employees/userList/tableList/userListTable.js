@@ -14,7 +14,7 @@ const UserListTable = (props) => {
 
     const userList = useSelector((state) => state.users?.users);
 
-    console.log(userList);
+    // console.log(userList);
 
     return (
         <div className="user-list-table">

@@ -1,5 +1,5 @@
 import "./sideBar.css";
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 // import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { toggleEmployeeMenu, toggleSettingsMenu } from "../../redux/slices/sidebarSlice";
@@ -16,20 +16,20 @@ const SideBar = () => {
 
     return (
         <div className={`side-bar ${isOpenSidebar ? "" : "hide-side-bar"}`}>
-            <a href="/" className={`side-bar-logo ${isOpenSidebar ? "" : "logo-hide-side-bar"} hover`}>
+            <Link to="/" className={`side-bar-logo ${isOpenSidebar ? "" : "logo-hide-side-bar"} hover`}>
                 <div className={`logo ${isOpenSidebar ? "" : "logo-image-hide-side-bar"}`}></div>
-            </a>
+            </Link>
             <div className="menu">
                 <ul className="side-bar-menu">
                     <li>
-                        <a className="tags" href="/dashboard/overview">
+                        <Link className="tags" to="/dashboard/overview">
                             <div className={`item ${isOpenSidebar ? "" : "item-hide-side-bar"}`}>
                                 <div className="item-icon">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 7V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V7C3 4 4.5 2 8 2H16C19.5 2 21 4 21 7Z" stroke="#b7c0cd" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.5 4.5V6.5C14.5 7.6 15.4 8.5 16.5 8.5H18.5" stroke="#b7c0cd" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 13H12" stroke="#b7c0cd" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 17H16" stroke="#b7c0cd" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                                 </div>
                                 {isOpenSidebar && (<div className="item-title">Dashboard</div>)}
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <div onClick={handleSubmenuEmployee} className={`item ${isOpenSidebar ? "" : "item-hide-side-bar"}`}>
@@ -44,68 +44,68 @@ const SideBar = () => {
                         {/* Submenu Employee */}
                         {employeeMenu && (<ul className="sub-menu-employee">
                             <li>
-                                <a className="tags" href="/employees">
+                                <Link className="tags" to="/employees">
                                     <div className="item-sub-menu">
                                         <div className="item-title">All employees</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="tags" href="/departments">
+                                <Link className="tags" to="/departments">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Departments</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="tags" href="/position">
+                                <Link className="tags" to="/position">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Position</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="tags" href="/skill-type">
+                                <Link className="tags" to="/skill-type">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Skill Type</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="tags" href="/employess">
+                                <Link className="tags" to="/employess">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Skills</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="tags" href="/certifications">
+                                <Link className="tags" to="/certifications">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Certifications</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                         </ul>)}
                     </li>
                     <li>
-                        <a className="tags" href="/project-team">
+                        <Link className="tags" to="/project-team">
                             <div className={`item ${isOpenSidebar ? "" : "item-hide-side-bar"}`}>
                                 <div className="item-icon">
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="people-group" class="svg-inline--fa fa-people-group " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style={{ height: '26px', width: '26px', color: ' #b7c0cd' }}><path fill="currentColor" d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"></path></svg>
                                 </div>
                                 {isOpenSidebar && (<div className="item-title">Project Team</div>)}
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a className="tags" href="/my-profile">
+                        <Link className="tags" to="/my-profile">
                             <div className={`item ${isOpenSidebar ? "" : "item-hide-side-bar"}`}>
                                 <div className="item-icon">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="#b7c0cd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22" stroke="#b7c0cd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                                 </div>
                                 {isOpenSidebar && (<div className="item-title">My Profile</div>)}
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <div onClick={handleSubmenuSetting} className={`item ${isOpenSidebar ? "" : "item-hide-side-bar"}`}>
@@ -119,11 +119,11 @@ const SideBar = () => {
                         </div>
                         {settingsMenu && (<ul className="sub-menu-setting">
                             <li>
-                                <a className="tags" href="/employess">
+                                <Link className="tags" to="/change-password">
                                     <div className="item-sub-menu">
                                         <div className="item-title">Change Password</div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                         </ul>)}
                     </li>

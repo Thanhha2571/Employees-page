@@ -18,11 +18,12 @@ const UserItemTable = (props) => {
 
     const handleMenu = (uuid) => {
         dispatch(showMenu(uuid));
+        // console.log(uuid);
     }
 
-    const handleStatus = () => {
-        dispatch(setStatus())
-        console.log("...");
+    const handleStatus = (uuid) => {
+        dispatch(setStatus(uuid))
+        console.log(uuid);
     }
     return (
         <tr className="tr-item">
@@ -40,7 +41,7 @@ const UserItemTable = (props) => {
             <td className="td-item">{email}</td>
             <td className="td-item">{roleObj?.title}</td>
             <td className="td-item">{createdAt.substr(0, 10)}</td>
-            <td className="td-item">{status}</td>
+            <td className="td-item-status">{status}</td>
             <td className="td-item-action">
                 <div className="dropdown-menu-edit-delete-user">
                     <svg
@@ -129,7 +130,7 @@ const UserItemTable = (props) => {
                                 Delete
                             </span>
                         </button>
-                        <button onClick={handleStatus} className="edit-btn">
+                        <button onClick={() => handleStatus(uuid)} className="status-btn">
                             <svg
                                 style={{
                                     width: "10px",

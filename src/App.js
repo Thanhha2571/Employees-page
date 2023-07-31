@@ -5,6 +5,7 @@ import Dashboard from "./view/dashboard/dashboard";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Suspense } from "react";
 
 // import Login from "./view/login/login";
 import "./App.css"
@@ -12,17 +13,34 @@ function App() {
 
   const { isOpenSidebar } = useSelector((state) => state.sidebar)
 
+  const routing = [
+    {
+      path: "*",
+      component: <Dashboard />
+    },
+    {
+      path : "employees",
+      component : <Employee />
+    },
+  ]
   return (
     // <BrowserRouter>
     <div className="app">
       <SideBar />
       <div className={`layout ${isOpenSidebar ? "" : "layout-hide-side-bar"}`}>
         <Header />
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard/overview" />} />
-          <Route path="/employees" element={<Employee />} />
-          <Route path="/dashboard/overview" element={<Dashboard />} />
-        </Routes>
+          <Routes>
+            {routing.map((element, index) => (
+              <Route
+                path={`/${element.path}`}
+                element={
+                  <Suspense fallback={<></>}>{element.component}</Suspense>
+                }
+                key={String(index)}
+              />
+            ))}
+            {/* <Route path="/404" element={<PageNotFound />}></Route> */}
+          </Routes>
       </div>
     </div>
     // </BrowserRouter>

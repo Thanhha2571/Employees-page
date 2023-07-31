@@ -90,9 +90,18 @@ export const userSlice = createSlice({
       state.gridView = true;
       state.tableView = false
     },
+    // setStatus: (state, action) => {
+    //   // const uuid = action.payload;
+    //   const uuid = action.payload
+    //   state.status = state.user.uuid === uuid ? "Active" : "InActive";
+    // },
+
     setStatus: (state, action) => {
-      // const uuid = action.payload;
-      state.status = "Inactive"
+      const uuid = action.payload;
+      const user = state.users.find((user) => user.uuid === uuid);
+      if (user) {
+        user.status = user.status === "Active" ? "InActive" : "Active";
+      }
     },
     showMenu: (state, action) => {
       const uuid = action.payload;
